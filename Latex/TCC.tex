@@ -1,0 +1,728 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.8 laurocesar
+%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	twoside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	Times,
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+%	english,			% idioma adicional para hifenização
+%	french,				% idioma adicional para hifenização
+%	spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacote da PUC Minas
+% ---
+\usepackage[combrasao]{abntex2-pucminas}
+%\usepackage{abakos}  %pacote com padrão da Abakos baseado no padrão da PUC
+% ---
+
+
+
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Referencial Teórico}
+\autor{Bruno Motta Azevedo do Nascimento}
+\local{Brasil}
+\data{2014}
+\orientador{João Caram}
+%\coorientador{Equipe \abnTeX}
+\instituicao{%
+  Pontifícia Universidade Católica de Minas Gerais
+  \par
+  Faculdade de Sistemas de Informação
+ }
+\tipotrabalho{Trabalho de Conclusão de Curso}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Trabalho de conclusão de curso do aluno Bruno Motta Azevedo do Nascimento. Este é um trabalho que visa o desenvolvimento de uma ferramenta web para gestão de conteúdo multimidia.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={wordpress}{web}{gestão de conteúdo}{CMS}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
+% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
+% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+% o conteúdo de implementação deste arquivo pelo comando abaixo:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+\begin{fichacatalografica}
+	\vspace*{\fill}					% Posição vertical
+	\hrule							% Linha horizontal
+	\begin{center}					% Minipage Centralizado
+	\begin{minipage}[c]{12.5cm}		% Largura
+	
+	\imprimirautor
+	
+	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+	\imprimirlocal, \imprimirdata-
+	
+%	\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
+	
+	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+	
+	\hspace{0.5cm}
+	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+	\imprimirdata.}\\
+	
+	\hspace{0.5cm}
+		1. Wordpress.
+		2. Gestão de conteúdo.
+		3. Internet.
+		I. Orientador:  João Caram.
+		II. Universidade Pontifícia Universidade Católica de Minas Gerais.
+		III. Faculdade de Sistemas de Informação.
+		IV. Referencial Teórico.		
+%	\hspace{8.75cm} CDU 02:141:005.7\\
+	
+	\end{minipage}
+	\end{center}
+	\hrule
+\end{fichacatalografica}
+% ---
+
+% ---
+% Inserir errata
+% ---
+%\begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%
+%\vspace{\onelineskip}
+%
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%
+%
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+%
+%\end{errata}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \includepdf{folhadeaprovacao_final.pdf}
+%
+
+%Folha de aprovação
+%\begin{folhadeaprovacao}
+%
+%  \begin{center}
+%    {\ABNTEXchapterfont\large\imprimirautor}
+%
+%    \vspace*{\fill}\vspace*{\fill}
+%    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+%    \vspace*{\fill}
+%    
+%    \hspace{.45\textwidth}
+%    \begin{minipage}{.5\textwidth}
+%        \imprimirpreambulo
+%    \end{minipage}%
+%    \vspace*{\fill}
+%   \end{center}
+%    
+%   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
+%
+%   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+%   \assinatura{\textbf{Professor} \\ Convidado 1}
+%   \assinatura{\textbf{Professor} \\ Convidado 2}
+%   %\assinatura{\textbf{Professor} \\ Convidado 3}
+%   %\assinatura{\textbf{Professor} \\ Convidado 4}
+%      
+%   \begin{center}
+%    \vspace*{0.5cm}
+%    {\large\imprimirlocal}
+%    \par
+%    {\large\imprimirdata}
+%    \vspace*{1cm}
+%  \end{center}
+%  
+%\end{folhadeaprovacao}
+% ---
+
+% ---
+% Dedicatória
+% ---
+%\begin{dedicatoria}
+%   \vspace*{\fill}
+%   \centering
+%   \noindent
+%   \textit{ Este trabalho é dedicado às crianças adultas que,\\
+%   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+%\end{dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+%\begin{agradecimentos}
+%Os agradecimentos principais são direcionados à Gerald Weber, Miguel Frasson,
+%Leslie H. Watter, Bruno Parente Lima, Flávio de Vasconcellos Corrêa, Otavio Real
+%Salvador, Renato Machnievscz\footnote{Os nomes dos integrantes do primeiro
+%projeto abn\TeX\ foram extraídos de
+%\url{http://codigolivre.org.br/projects/abntex/}} e todos aqueles que
+%contribuíram para que a produção de trabalhos acadêmicos conforme
+%as normas ABNT com \LaTeX\ fosse possível.
+%
+%Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura
+%da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de
+%Brasília (CPAI), ao grupo de usuários
+%\emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos
+%novos voluntários do grupo
+%\emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e
+%\url{http://abntex2.googlecode.com/}}~que contribuíram e que ainda
+%contribuirão para a evolução do \abnTeX.
+%
+%\end{agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+\begin{epigrafe}
+    \vspace*{\fill}
+	\begin{flushright}
+		\textit{Tudo o que temos de decidir é o que fazer com o tempo que nos é dado. - Gandalf}
+	\end{flushright}
+\end{epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+ Este trabalho tem como objetivo servir de referencial teórico para a monografia do aluno Bruno Motta. Ele serve para contextualizar o ambiente do problema a ser resolvido, assim como introduzir a ferramenta que será usada como base para a resolução deste problema.
+ \textbf{Palavras-chaves}: Wordpress, Internet, Gestão de Conteúdo.
+\end{resumo}
+
+% resumo em inglês
+%\begin{resumo}[Abstract]
+% \begin{otherlanguage*}{english}
+%   This is the english abstract.
+%
+%   \vspace{\onelineskip}
+% 
+%   \noindent 
+%   \textbf{Key-words}: latex. abntex. text editoration.
+% \end{otherlanguage*}
+%\end{resumo}
+%
+% resumo em francês 
+%\begin{resumo}[Résumé]
+% \begin{otherlanguage*}{french}
+%    Il s'agit d'un résumé en français.
+% 
+%   \textbf{Mots-clés}: latex. abntex. publication de textes.
+% \end{otherlanguage*}
+%\end{resumo}
+%
+% resumo em espanhol
+%\begin{resumo}[Resumen]
+% \begin{otherlanguage*}{spanish}
+%   Este es el resumen en español.
+%  
+%   \textbf{Palabras clave}: latex. abntex. publicación de textos.
+% \end{otherlanguage*}
+%\end{resumo}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+%\pdfbookmark[0]{\listfigurename}{lof}
+%\listoffigures*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+%\begin{siglas}
+%  \item[Fig.] Area of the $i^{th}$ component
+%  \item[456] Isto é um número
+%  \item[123] Isto é outro número
+%  \item[lauro cesar] este é o meu nome
+%\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+%\begin{simbolos}
+%  \item[$ \Gamma $] Letra grega Gama
+%  \item[$ \Lambda $] Lambda
+%  \item[$ \zeta $] Letra grega minúscula zeta
+%  \item[$ \in $] Pertence
+%\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+%\chapter*[Introdução]{Introdução}
+%\addcontentsline{toc}{chapter}{Introdução}
+
+
+
+% ----------------------------------------------------------
+% PARTE I - Ambiente
+% ----------------------------------------------------------
+%\part{Ambientação}
+
+\chapter{Web 2.0}
+O termo "Web 2.0" é usado para representar a web da forma como ela é hoje que mudou drasticamente, após sua criação. Essa nova fase ou etapa da web é bastante diferente de sua concepção original. A Web 2.0 não está também vinculada apenas a documentos on-line, está presente em aplicações como o torrent, que apesar de usar recursos da rede não são documentos html.
+\par
+
+\section{Inteligência coletiva}
+Um novo conceito da web 2.0 é inteligência coletiva. Tal abordagem usa o conhecimento de diversos indivíduos, que muitas vezes nem mesmo se conhecem, para chegar a solução de terminado problema. O poder dessa abordagem se deve ao fato que é possível alocar diversas pessoas para resolver os próprios problemas e com isso ajudando ou até mesmo resolvendo o problema de outras pessoas\cite{web2.0}.
+\par
+Essa nova fase da web incentiva e oferece recursos para que todas as pessoas possam gerar conteúdo, este é um ponto muito importante, pois isso também é inteligência coletiva. Neste aspecto a vantagem é que o volume de informações cresse de forma muito rápida\cite{web2.0}.
+\par
+Outro ponto extremamente importante é que na Web 2.0 todos são responsáveis por gerar conteúdo. Uma amostra clara disso são os blogs, que são sites pessoais, de conteúdo dinâmico Os usuários do blog podem colocar nas notícias a sua opinião e debate-las com outros e até mesmo enviar links com outras fontes para a mesma informação\cite{web2.0}.
+\par
+Potencial de crescimento rápido, essa é uma característica exclusiva. Somente agora nos conseguimos ter empresas com acessão rápidas, com empresas que com pouco tempo de via se tornaram gigantescas. Essas empresas no geral aprenderam a usar efetivamente o poder da inteligência coletiva, e extrair informações nunca antes imaginadas, assim como desenvolveram um novo mercado o Software como serviço\cite{web2.0,saas}.
+\par
+
+\section{Softwares livres}
+Softwares livres, não são uma nova idéia, porem seu conceito está intimamente ligado a web 2.0. Usando o poder da inteligência coletiva, os softwares livres tendem a fazer com que os usuários solucionem os próprios problemas e espalhem essa solução para os outros usuários, assim um determinado programa atinge um nível de adaptação gigante. Um dos casos mais famosos é o Linux, que apesar de ter surgido antes da Web 2.0 é um software livre. Os softwares livres não são necessariamente Web 2.0, porem estes fazem uso de muitos conceitos em comum\cite{web2.0}.
+\par
+
+\section{Nuvem}
+A rede mundial nessa nova fase abriu diversos horizontes para novos produtos e formas de serviços. Como cada usuário tem o potencial de gerar conteúdo, juntamente com a evolução da tecnologia e a maturidade adquirida por diversas empresas essa nova fase da rede desenvolveu uma nova relação de produtos e serviços "nas nuvens".
+Tal expressão reflete a idéia de um ambiente distante e desconhecido, a nuvem é  um ambiente ao qual não sabemos qual exatamente é o hardware a velocidade de tráfego, qual sistema operacional, nós não temos esses dados ao usar um programa qualquer ou acessar um documento\cite{nuvem, nuvem2}.
+\par
+
+\subsection{A arqitetura da nuvem}
+Neste trabalho iremos classificar as partes da nuvem em 3 partes, sendo elas descritas a seguir. Tal divisão tem objetivo explanar os recursos que uma aplicação que esteja nas nuvens deve dispor\cite{nuvem, nuvem2}.
+\par
+
+\subsubsection{Os servidores}
+estes são responsáveis por manter os endereços da internet funcionando,  armazenar os arquivos das aplicações, executar o processamento e responder a requisições. Os servidores tem como objetivo manter a internet em funcionamento para que as outras partes possam fazer uso da mesma\cite{nuvem, nuvem2}.
+\par
+
+\subsubsection{A aplicação}
+É um conjunto de serviços, basicamente qualquer coisa de valor entregue aos usuários. São os serviços, programas ou documentos encontrados nas nuvens. As aplicações que efetivamente dão utilidade aos servidores\cite{nuvem, nuvem2}.
+\par
+
+\subsubsection{Os usuários}
+Como dito, o fato dos usuários criarem conteúdo e informações, também os tornam um fator importante nos novos produtos, a cada vez que se passa o mesmo produto deve se adaptar mais a cada usuário, e fazer o uso das informações geradas pelo próprio usuário. Os usuários também podem ser outros sistemas ou programas, na verdade o usuário pode ser qualquer interface de comunicação de um determinado programa, serviço ou documento na internet\cite{nuvem, nuvem2}.
+\par
+
+%\subsection{Serviços consumidos}
+%Estes agora são serviços que uma aplicação em nuvem pode consumir. Tais serviços tem como objetivo prover escalabilidade, segurança e disponibilidade da aplicação. Vale citar que esse é um resumo com os principais serviços que a aplicação poderá consumir e alguns outros serviços foram deixados de fora, pois atualmente não são tão importantes como os citados a seguir.
+%\par
+%
+%\subsubsection{Hardware sob demanda}
+%Leva a idéia que o hardware disponível deve poder ser alocado sob demanda do servidor, isso permite que uma aplicação possa aumentar o número de usuários de forma que tende ao infinito.
+%\par
+%
+%\subsubsection{Pool de recursos}
+%a idéia de que os recursos sejam alocados onde mais são necessários de forma dinâmica e sem o conhecimento do usuário. Por exemplo uma determinada aplicação quando acessada em um pais é direcionada para um hardware específico e ao ser acessada de outro pais, da mesma forma para o ponto de vista do usuário, essa aplicação pode acessar os dados em outro servidor completamente diferente.
+%\par
+
+
+
+\chapter{Modelos de serviço}
+Agora iremos explicar alguns dos tipos de serviços que as aplicações devem ofertar a seus usuários finais. Esses são serviços específicos de aplicações em nuvem, ao qual vende-se algo que não é essencialmente um serviço como se este o fosse\cite{web2.0}.
+\par
+
+\section{Infraestrutura como um serviço (IaaS)}
+Esse modelo de serviço tem como objetivo fazer com que a gerência dos recursos de infra-estrutura dos servidores. Ele fornece aos contratantes a possibilidade de gerenciar os recursos computacionais necessários. Este serviço está ligado diretamente com a capacidade de virtualização de hardware\cite{saas, nuvem, nuvem2}.
+\par
+
+\section{Plataforma como um serviço (PaaS)}
+Esta camada intermediária da nuvem, ela permite que os desenvolvedores possam criar e implementar as aplicações sem o conhecimento do hardware que irá executar a tarefa. Neste nível não há controle dos recursos computacionais, mas sim de algumas aplicações que eventualmente podem ser usadas\cite{saas, nuvem, nuvem2}.
+\par
+
+\section{Software como um serviço (SaaS)}
+As aplicações devem estar acessíveis aos clientes, a idéia de software como serviço vem da capacidade de vender um acesso ao software e não a venda do próprio software em si. Essa forma de serviço é amplamente difundida na internet em várias formas, tais como os serviços de busca e servidores de email. Neste nível a responsabilidade é disponibilizar uma aplicação completa ao usuário com um ambiente computacional completamente desconhecido para o usuário\cite{saas, nuvem, nuvem2}.
+\par
+
+
+%\chapter{Gestão de Informação}
+
+
+
+% ----------------------------------------------------------
+% PARTE II - Solução
+% ----------------------------------------------------------
+%\part{Solução}
+
+%\chapter{Organizando os termos}
+%Este capítulo tem o intuito de organizar e definir os termos que serão usados para a gestão do conteúdo e também explicar o fluxo proposto.
+%\par
+%
+%\section{Definindo Termos}
+%
+%\subsection{Autor}
+%O criador de uma Série ou Material.
+%\par
+%
+%\subsection{Séries}
+%É um conjunto de obras referentes a um determinado assunto em comum. Fazendo analogia a livros de romance, podemos dizer "todos os livros de Tolkien referentes a terra média são uma Série".
+%\par
+%
+%\subsection{Materiais}
+%A Materiais é "uma história da série". Mantendo ainda a mesma analogia aos livros de Tolkien, podemos dizer  "Os 3 livros do Senhor dos Anéis (1, 2 e 3) juntos formam um Material".
+%\par
+%
+%\subsection{Multimídia}
+%Multimídia é a forma forma em que determinado material se encontra. Ainda no caso citado acima, podemos dizer, que temos dois materiais, os 3 filmes e os 3 livros, todos pertencentes a mesma Série. Essa separação ocorre pois em alguns casos mesmo compartilhando os títulos as histórias são levemente diferentes e em outros casos imensamente diferentes.
+%\par
+%
+%\subsection{Generos}
+%São os gêneros formais que uma Serie pode suportar ou mesmo um material. No caso de filmes seriam generos como Drama, Romance, Aventura, Ação dentre outros. Os generos não são fixos, pois conteúdos diferentes podem suportar outros gêneros. No caso das animações japonesas temos nomes diferentes, como Mechas, Shounen, dentre outros.
+%\par
+%
+%\subsection{Temas}
+%Os temas servem para refinar e caracterizar melhor uma obra, os Temas são mais específicos e se tratam mais sobre o assunto que como a forma como ele é apresentado.\par
+%Um exemplo seria um filme de ninjas. Esse filme pode ser de drama, aventura, romance ou qualquer outro gênero, o tema apenas diz que ele se refere a ninjas.
+%\par
+%
+%\subsection{Ocorrências}
+%As Ocorrências compõem um Material. No caso dos livros, os 3 Livros seriam o material porem cada livro individual é tratado como uma ocorrência, o mesmo se aplica aos filmes, cada filme é uma ocorrência do material em questão.
+%\par
+%
+%\subsection{Formatos}
+%Os formatos são as formas que determinada ocorrência são oferecidas, por exemplo "livros","Filmes" ou caso seja interessante podem até mesmo ser a extensão de um arquivo "rmvb","avi".
+%\par
+%
+%
+%\section{Fluxo de uso}
+%Para apresentar a plataforma, eu escolhi usar um tema ao qual eu conheço melhor, Animes. Para adaptar a esse ambiente foi necessário acrescentar algumas informações que não forma descritas anteriormente, porem sua função ficará clara a medida em que o fluxo de uso for sendo explicado.
+%
+%\subsection{Adicionando um episódio de anime, passo a passo}
+%\begin{enumerate}
+%  \item Cria-se um Autor
+%  \item Cria-se uma Série.
+%  	\subitem Os Gêneros e Temas, podem ser adicionados juntamente com a criação de uma série, ou podem ser escolhidos dentre as opções já cadastradas.
+%  	\subitem Neste ponto vinculamos também um autor a essa série.
+%  \item Cria-se um Material.
+%  	\subitem Neste ponto vinculamos esse material a uma série já existente.
+%  	\subitem Neste ponto vinculamos também um autor a esse material (pode ser diferente do autor da série)
+%  	\subitem Adiciona-se também Gêneros e Temas a um material (podem diferir da série).
+%  \item Cria-se uma Ocorrência.
+%  	\subitem Neste ponto vinculamos esse material a uma série já existente.
+%  	\subitem Neste ponto vinculamos esse material a um formato existente ou cria-se um adequado e vincula.
+%  \item Cria-se um servidor. Como é o caso de um site de animes, nos iremos cadastrar o servidor de arquivos onde iremos hospedar os episódios.
+%  \item Neste momento temos todo o necessário para começar a oferecer episódios de anime. Porem ainda não criamos nenhum link. Para exibir um episódio, basta voltar na ocorrência em que deseja, abri-la "editar".
+%  \item Ir na aba de Servidores e criar uma ligação com o servidor onde o arquivo está hospedado(cada nova ligação é um novo link).
+%  \item Coloque os dados do episódio (Título, Número, e link) e salve a ocorrência.
+%\end{enumerate}
+%
+%\section{Resultado Final}
+%Ao final do passo a passo, você terá criado um anime, com algum episódio já cadastrado. Nesse ponto temos todos os conteúdos referentes a um assunto vinculados.
+
+
+
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+%\chapter*[Conclusão]{Conclusão}
+%\addcontentsline{toc}{chapter}{Conclusão}
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{Referencial}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%\begin{apendicesenv}
+%
+% Imprime uma página indicando o início dos apêndices
+%\partapendices
+%
+% ----------------------------------------------------------
+%\chapter{Quisque libero justo}
+% ----------------------------------------------------------
+%
+%\lipsum[50]
+%
+% ----------------------------------------------------------
+%\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+% ----------------------------------------------------------
+%\lipsum[55-57]
+%
+%\end{apendicesenv}
+% ---
+%
+%
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+%
+% ---
+% Inicia os anexos
+% ---
+%\begin{anexosenv}
+%
+% Imprime uma página indicando o início dos anexos
+%\partanexos
+%
+% ---
+%\chapter{Morbi ultrices rutrum lorem.}
+% ---
+%\lipsum[30]
+%
+% ---
+%\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%parturient montes nascetur ridiculus mus}
+% ---
+%
+%\lipsum[31]
+%
+% ---
+%\chapter{Fusce facilisis lacinia dui}
+% ---
+%
+%\lipsum[32]
+%
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+
+\printindex
+
+\end{document}
+
